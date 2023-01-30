@@ -5,8 +5,6 @@ import styles from '@/styles/Home.module.css'
 //components
 import SidePicture from '@/components/menus/SidePicture'
 
-const inter = Inter({ subsets: ['latin'] })
-
 export default function Login() {
   return (
     <>
