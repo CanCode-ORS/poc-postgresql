@@ -30,21 +30,21 @@ export default function Home() {
               </div>
 
                 <div class=''>
-                  <p class='py-3 text-[1.5rem] font-medium'>Sign In</p>
+                  <p class='py-3 text-[1.36rem] font-medium'>Sign In</p>
                   <input class='w-full mb-3' type='text' placeholder='Email'/>
                   <input class='w-full' type='text' placeholder='Password'/>
                     <div class='flex items-center p-2 gap-1'>
                       <input class='my-2' id='remember' type='checkbox' /><br/>
                       <label for='remember'>Remember me</label>
                     </div>
-                  <button class='p-[10px] w-full bg-black text-white'>Sign In</button>
+                  <button class='p-[10px] w-full bg-black text-white rounded-sm'>Sign In</button>
                     <p class='py-3 text-right'>Forgot your password?</p>
                 </div>
 
                 <div class='flex flex-col gap-[13px] text-center'>
                   <p>Or</p>
-                  <button class='p-[10px] w-full bg-black text-white'>Sign In with Google</button>
-                  <button class='p-[10px] w-full bg-black text-white'>Sign In with Facebook</button>
+                  <button class='p-[10px] w-full bg-black text-white rounded-sm'>Sign In with Google</button>
+                  <button class='p-[10px] w-full bg-black text-white rounded-sm'>Sign In with Facebook</button>
                 </div>
           </div>
         </div>

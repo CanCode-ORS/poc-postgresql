@@ -4,12 +4,12 @@
     width: 24rem;
      margin: 0 auto;
      padding: 1.8rem;
-     background-color: yellow;
+     background-color: rgb(229, 220, 220);
      line-height: 2.3rem;
      height: 100vh;
   }
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 1000px) {
     .container {
         display: none;
     }
