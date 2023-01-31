@@ -3,12 +3,14 @@ import React, {useEffect, useState} from 'react'
 import Header from '../../components/teams/Header.js'
 import AddTeam from '@/components/teams/AddTeam.js';
 import TeamsList from '@/components/teams/TeamsList.js';
+import TopNavbar from '@/components/menus/TopNavbar.js';
 
 const Teams = () => {
   
   return (
       <>
-      <Header headerText="Teams" />
+      <TopNavbar pageName='Manage Teams' />
+      {/* <Header headerText="Teams" /> */}
       <AddTeam />
       <TeamsList />
       </>
