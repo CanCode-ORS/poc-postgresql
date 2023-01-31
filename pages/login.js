@@ -1,11 +1,51 @@
+import React, {useState} from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 //components
 import SidePicture from '@/components/menus/SidePicture'
+// import {useSession, signIn, signOut} from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useUser } from '@/context/userContext';
 
 export default function Login() {
+
+    const [email, setEmail] = useState('');
+    const router = useRouter();
+    const [password, setPassword] = useState('');
+    const [user, setUser] = useUser();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (email === '' || password === '') {
+      return;
+    }
+
+    try {
+      const resp = await fetch('http://localhost:3000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({email: email})
+      })
+      const data = await resp.json();
+      console.log('DATA:', data.user);
+
+      if (data.user) {
+        setUser(data.user);
+        router.push('/teams');
+      }
+      // router.push('/teams');
+      
+      
+    } catch (error) {
+      console.error(error.message);
+    }
+
+  }
+
   return (
     <>
       <Head>
@@ -27,13 +67,13 @@ export default function Login() {
 
                 <div class=''>
                   <p class='py-3 text-[1.36rem] font-medium'>Sign In</p>
-                  <input class='w-full mb-3' type='text' placeholder='Email'/>
-                  <input class='w-full' type='password' maxlength="8" placeholder='Password'/>
+                  <input class='w-full mb-3' type='text' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email'/>
+                  <input class='w-full' type='password' value={password} onChange={(e) => setPassword(e.target.value)} maxLength="8" placeholder='Password'/>
                     <div class='flex items-center p-2 gap-1'>
                       <input class='my-2' id='remember' type='checkbox' /><br/>
                       <label for='remember'>Remember me</label>
                     </div>
-                  <button class='p-[10px] w-full bg-black text-white rounded-sm'>Sign In</button>
+                  <button onClick={handleSubmit} class='p-[10px] w-full bg-black text-white rounded-sm'>Sign In</button>
                     <p class='py-3 text-right cursor-pointer'>Forgot your password?</p>
                 </div>
 

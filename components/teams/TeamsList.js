@@ -2,12 +2,19 @@ import React, {useState, useEffect} from 'react'
 // import Link from 'next/link'
 import { useTeams } from '@/context/teamsContext.js';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+import { useUser } from '@/context/userContext';
 //components
+import Image from 'next/image';
 import DeleteTeamModal from './DeleteTeamModal';
+//nextAuth
+// import {useSession, signIn, signOut} from 'next-auth/react';
 
 const TeamsList = () => {
+    // const session = useSession();
     const router = useRouter();
+    const [user, setUser] = useUser();
+    const [authenticated, setAuthenticated] = useState(false);
+
     const [deleteModal, setDeleteModal] = useState(false);
     const [team, setTeam] = useState(); //meant for deleting
     const [teams, setTeams] = useTeams([]);
@@ -23,6 +30,15 @@ const TeamsList = () => {
             }
         })();
     }, [])
+
+    // useEffect(() => {
+    //     console.log(session);
+    //     if (session.status === 'authenticated') {
+    //         setAuthenticated(true);
+    //     } else {
+    //         setAuthenticated(false);
+    //     }
+    // }, [session])
 
     const handleTeamSelected = (id) => {
         router.push(`/teams/${id}`);
@@ -100,17 +116,19 @@ const TeamsList = () => {
                 <th scope="col" class="px-6 py-3">
                     Team Manager
                 </th>
-                <th scope="col" class="px-6 py-3 w-5">
-                    
-                </th>
-                <th scope="col" class="px-6 py-3 w-5">
-                    
-                </th>
+                {user && (
+                <>
+                  <th scope="col" class="px-6 py-3 w-5">       
+                  </th>
+                  <th scope="col" class="px-6 py-3 w-5">  
+                  </th>
+                </>
+                )}
             </tr>
         </thead>
         <tbody>
             {teams && teams.map((team) => (
-                <tr onClick={() => handleTeamSelected(team.id)} class="bg-blue-600 border-b border-blue-400 hover:bg-blue-500">
+                <tr key={team.id} onClick={() => handleTeamSelected(team.id)} class="bg-blue-600 border-b border-blue-400 hover:bg-blue-500">
                     <th scope="row" class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
                         {team.teamname}
                     </th>
@@ -123,6 +141,9 @@ const TeamsList = () => {
                     <td class="px-6 py-4">
                     {team.teammanager}
                     </td>
+
+                    {user ? (
+                    <>
                     <td class="px-6 py-4">
                     <button onClick={(e) => handleUpdate(e, team.id)} class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 border border-blue-700 rounded">
                         Edit
@@ -133,6 +154,11 @@ const TeamsList = () => {
                         Delete
                     </button>
                     </td>
+                    </>
+                    ) : (
+                      <>
+                      </>
+                    )}
                 </tr>
             ))}            
         </tbody>

@@ -1,11 +1,18 @@
+import React, {useState} from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 //components
 import SidePicture from '@/components/menus/SidePicture'
 
 export default function Signup() {
+
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [authority, setAuthority] = useState('');
+
   return (
     <>
       <Head>
@@ -28,15 +35,15 @@ export default function Signup() {
                 <div class=''>
                   <p class='py-3 text-[1.36rem] font-medium'>Sign Up</p>
                   <div class='flex gap-2'>
-                    <input class='' type='text' placeholder='First Name'/>
-                    <input class='' type='text' placeholder='Last Name'/>
+                    <input class='' type='text' value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder='First Name'/>
+                    <input class='' type='text' value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder='Last Name'/>
                   </div>
                   <div class='my-3'>
-                    <input class='w-full mb-3' type='text' placeholder='Email'/>
-                    <input class='w-full' type='password' maxlength="8" placeholder='Password (Max 8 characters)'/>
+                    <input class='w-full mb-3' type='text' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email'/>
+                    <input class='w-full' type='password' maxlength="8" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password (Max 8 characters)'/>
                     </div>
 
-                    <select class="w-full" id="">
+                    <select class="w-full" value={authority} onChange={(e) => setAuthority(e.target.value)} id="">
                     <option hidden>Choose Authority</option>  
                     <option value="player">Player</option>
                     <option value="captain">Team Captain</option>
