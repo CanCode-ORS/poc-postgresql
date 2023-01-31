@@ -1,9 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 import 'flowbite'; 
 import Image from 'next/image';
 import styles from '../../styles/Navbar.module.css'
+//components
+import SidebarMenu from './SidebarMenu';
 
 const TopNavbar = ({pageName}) => {
+
+    const [open, setOpen] = useState();
+
   return (
     <>
     <nav className={styles.navbar}>
@@ -17,8 +22,9 @@ const TopNavbar = ({pageName}) => {
             <li><a href="#">Admin Portal / Profile</a></li>
             <li><a href="#">Sign Out</a></li>
         </ul> */}
-        <button class='ml-3 focus:bg-gray-300'>
-        <Image class='' width={32} height={32} src='/../public/images/hamburger-menu.png'/>
+        <button onClick={() => setOpen(!open)} class='ml-3'>
+        {/* <Image class='' width={32} height={32} src='/../public/images/hamburger-menu.png'/> */}
+        <ion-icon class='text-[33px] items-center'name={open ? 'close' : 'menu'}></ion-icon>
         </button>
 
         <p class='ml-8'>{pageName}</p>
@@ -32,6 +38,7 @@ const TopNavbar = ({pageName}) => {
             </button>
         </div>
     </nav>
+    <SidebarMenu open={open} />
     </>
 
 // <nav class="bg-white border drop-shadow border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
