@@ -7,11 +7,30 @@ const TopNavbar = ({pageName}) => {
   return (
     <>
     <nav className={styles.navbar}>
-        <Image class='ml-3 cursor-pointer' width={37} height={37} src='/../public/images/hamburger-menu.png'/>
-        <p>{pageName}</p>
-        <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-        <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo" />
-      </button>
+        {/* <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Sports</a></li>
+            <li><a href="#">Schedule</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Manage Teams</a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Admin Portal / Profile</a></li>
+            <li><a href="#">Sign Out</a></li>
+        </ul> */}
+        <button class='ml-3 focus:bg-gray-300'>
+        <Image class='' width={32} height={32} src='/../public/images/hamburger-menu.png'/>
+        </button>
+
+        <p class='ml-8'>{pageName}</p>
+        
+        <div class='flex items-center gap-3 mr-3'>
+            <button type="button" class="rounded-full focus:bg-gray-300  " aria-expanded="false" >
+                <Image width={32} height={32} src='/../public/images/notification-bell.png'/>
+            </button>
+            <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" >
+                <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo" />
+            </button>
+        </div>
     </nav>
     </>
 
