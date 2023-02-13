@@ -21,6 +21,7 @@ const TeamsList = () => {
 
     useEffect(() => {
         (async () => {
+            setUser({name:'justin', role: 'admin'});
             try {
                 const resp = await fetch('api/teams');
                 const data = await resp.json();
